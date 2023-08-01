@@ -1,0 +1,45 @@
+{% extends './layout.html' %}
+{% block title %} FormData {% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">tagline</th>
+      <th scope="col">file</th>
+      <th scope="col">image</th>
+      <th scope="col">address</th>
+      <th scope="col">email</th>
+      <th scope="col">url</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if data %}
+  {% for d in data %}
+    <tr>
+      <th scope="row">{{ d.id }}</th>
+      <td>{{ d.name }}</td>
+      <td>{{ d.tagline }}</td>
+      <td>{{ d.file }}</td>
+      <td>{{ d.image }}</td>
+      <td>{{ d.address }}</td>
+      <td>{{ d.email }}</td>
+      <td>{{ d.url }}</td>
+    </tr>
+  {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+  </div>
+{% if "bc" in "abcdef" %}
+  This appears since "bc" is a substring of "abcdef"
+{% endif %}
+<!--{% include "./form.html" %}-->
+It is {% now "jS F Y H:i" %}
+{% endblock %}

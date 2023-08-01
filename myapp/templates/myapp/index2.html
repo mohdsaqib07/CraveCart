@@ -1,0 +1,155 @@
+{% extends './layout.html' %}
+{% block title %}Home{% endblock %}
+{% block css %}
+
+
+
+
+        .product-card {
+            width: 18rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+margin-bottom:10px;
+        position:relative;
+
+        }
+        .card-body{
+        padding:20px;
+text-transform:capitalize;
+
+        }
+
+        .product-card img {
+           width:100%;
+            height: 200px;
+            object-fit: contain;
+        }
+      .pricetag{
+       border-bottom:1px solid #ccc;
+        }
+      .our-title{
+         white-space:nowrap;
+          overflow:hidden;
+        text-overflow:ellipsis;
+        }
+.tooltiptext{
+     position: absolute;
+            /* top: 20px;
+    left: 0px; */
+            visibility: hidden;
+            font-weight:100;
+
+            background-color: black;
+            color: whitesmoke;
+            padding: 5px 5px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 1s;
+            /* If you increase its padding, also increase the value of the top property to ensure that it stays in the middle (if this is something you want). The same applies if you want the tooltip placed to the left. */
+        top:-2px;
+    left: 60%;
+            z-index: 1;
+
+}
+   .our-title:hover .tooltiptext{
+            visibility: visible;
+            opacity: 0.8;
+        }
+.card-title{
+font-weight:600;
+}
+
+{% endblock %}
+{% block body %}
+    <!-- Product Carousel -->
+<!-- Product Carousel -->
+{% for key,value in products.items %}
+<div id="productCarousel{{forloop.counter}}" class="carousel slide border" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    <div class="container my-4 mb-4">
+<h1 class="title">{{ key }}</h1>
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row">
+                    {% for product in value|slice:"0:3" %}
+                    <div class="col-md-4">
+                        <div class="card product-card">
+                            <div class="card-body">
+                            <h3 class="card-title our-title">{{product.subcategory}}  <span class="tooltiptext">{{product.subcategory}}</span> </h3></div>
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.product_name}}</h5>
+                                <p class="card-text">{{product.desc}}</p>
+                                <p class="card-text pricetag">Price : {{product.price}}</p>
+                                        <a href="#" class="btn btn-outline-primary">Add to Cart</a>
+                                <a href="#" class="btn btn-outline-primary">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% if value.3 %}
+{% for i in numberofslides %}
+    <div class="carousel-item">
+        <div class="container">
+            <div class="row">
+                {% for product in value|slice:"3:6" %}
+                    <div class="col-md-4">
+                        <div class="card product-card">
+                            <div class="card-body">
+                                <h3 class="card-title our-title">{{product.subcategory}} <span class="tooltiptext">{{product.subcategory}}</span></h3>
+                            </div>
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.product_name}}</h5>
+                                <p class="card-text">{{product.desc}}</p>
+                                <p class="card-text pricetag">Price : {{product.price}}</p>
+                        <a href="#" class="btn btn-outline-primary">Add to Cart</a>
+                                <a href="#" class="btn btn-outline-primary">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for product in value|slice:"6:" %}
+                    {% if forloop.counter0|divisibleby:3 %}
+                        </div>
+                        </div>
+                        </div>
+                        <div class="carousel-item">
+                        <div class="container">
+                        <div class="row">
+                    {% endif %}
+                    <div class="col-md-4">
+                        <div class="card product-card">
+                            <div class="card-body">
+                                <h3 class="card-title our-title">{{product.subcategory}} <span class="tooltiptext">{{product.subcategory}}</span> </h3>
+                            </div>
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.product_name}}</h5>
+                                <p class="card-text">{{product.desc}}</p>
+                                <p class="card-text pricetag">Price : {{product.price}}</p>
+                                <a href="#" class="btn btn-outline-primary">Add to Cart</a>
+                                <a href="#" class="btn btn-outline-primary">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endif %}
+
+        <!-- Add more carousel items as needed -->
+  </div>
+        <a class="btn btn-primary" data-bs-target="#productCarousel{{forloop.counter}}" data-bs-slide="prev" style="display:inline-block;margin-top:20vh;float:left;"> &lt; </a>
+        <a class="btn btn-primary" data-bs-target="#productCarousel{{forloop.counter}}" data-bs-slide="next" style="display:inline-block;margin-top:20vh;float:right;"> &gt; </a>
+</div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

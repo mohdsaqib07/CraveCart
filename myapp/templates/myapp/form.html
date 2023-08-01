@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Form</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      position: relative;
+
+        {% load static %}
+
+      background-image: url({% static './myapp/pxfuel.jpg' %} );
+      color : whitesmoke;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position:fixed;
+      background-size: cover;
+
+      font-family: 'Poppins', sans-serif;
+    }
+
+    div {
+      width: 50%;
+      margin: auto;
+      margin-top: 10vh;
+      border: 1px solid lightgray;
+      box-sizing;
+      border-box;
+      overflow: hidden;
+      padding: 20px;
+      border-radius: 5px;
+      text-transform: capitalize;
+      background:#fff;
+
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 6px;
+      font-size: 16px;
+
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      color: #1f80e0;
+      background: #fff;
+      border: 1px solid #1f80e0;
+
+      transition-property: background-color;
+      transition-duration: 250ms;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1f80e0;
+      color: white;
+      /* border: none; */
+    }
+
+    input,
+    button,
+    textarea {
+      margin: 6px 0px;
+    }
+    label{
+      font-weight: bold;
+      color:black;
+    }
+    @media screen and (max-width: 700px) {
+      div{
+        width: 100%;
+        border: none;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div style="">
+    <form action="{% url 'adddata' %}" method="post">
+      {% csrf_token %}
+      <label for="name">Enter the name : </label>
+      <input type="text" name="name" id="name" placeholder="name">
+      <label for="email">Enter email : </label>
+      <input type="email" name="email" id="email" placeholder="email">
+      <label for='tagline'>Enter the tagline : </label>
+      <input type="text" name="tagline" id="tagline" placeholder="tagline">
+      <label for="file">Upload the file : </label>
+      <input type="file" name="file" id="file" placeholder="file" style="border: none;">
+      <label for="image">Upload the image : </label>
+      <input type="file" name="image" id="image" placeholder="image" style="border: none;">
+      <label for="address">Enter the address : </label>
+      <textarea name="address" id="address" rows="5" placeholder="address"></textarea>
+      <label for="url">Enter the Url : </label>
+      <input type="url" name="url" id="url" placeholder="url">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+{% extends './layout.html' %} 
+{% block title %}Home{% endblock %} 
+{% block css %} 
+.product-card { width: 18rem; border: 1px solid #ddd; border-radius: 5px;
+margin-bottom:10px; position:relative; } 
+.card-body{ padding:20px;
+text-transform:capitalize; } 
+.product-card img { width:100%; height: 200px;
+object-fit: contain; } 
+.pricetag{ border-bottom:1px solid #ccc; } 
+.our-title{
+white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } 
+.tooltiptext{
+position: absolute; 
+/* top: 20px; left: 0px; */ 
+visibility: hidden;
+font-weight:100; 
+background-color: black; 
+color: whitesmoke; 
+padding: 5px 5px;
+border-radius: 6px; 
+opacity: 0; 
+transition: opacity 1s; /* If you increase its padding, also increase the value of the top property to ensure that it stays in
+the middle (if this is something you want). The same applies if you want the
+tooltip placed to the left. */ 
+top:-2px; 
+left: 60%; 
+z-index: 1; }
+.our-title:hover .tooltiptext{ visibility: visible; opacity: 0.8; } 
+.card-title{
+font-weight:600; } 
+{% endblock %} 
+{% block body %}
+<!-- Product Carousel -->
+<!-- Product Carousel -->
+
+{% for title,value in products.items %}
+<div id="productCarousel{{forloop.counter}}" class="carousel slide border" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="container my-4 mb-4">
+            <h2 class="title my-4">{{ title }}</h2>
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        {% for product in value|slice:"0:3" %}
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <div class="card-body">
+                                    <h3 class="card-title our-title">
+                                        {{product.subcategory}}
+                                        <span class="tooltiptext">{{product.subcategory}}</span>
+                                    </h3>
+                                </div>
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1"
+                                    id="imageproduct{{product.product_id}}" />
+                                <div class="card-body">
+                                    <h5 class="card-title" id="nameproduct{{product.product_id}}"
+                                        title="{{product.product_name}}">
+                                        {{product.product_name}}
+                                    </h5>
+                                    <p class="card-text">{{product.desc|slice:"0:50"}}...</p>
+                                    <p class="card-text pricetag" id="priceproduct{{product.product_id}}">
+                                        &#8377;{{product.price}}
+                                    </p>
+                                    <span id="divproduct{{ product.product_id }}" class="divproduct">
+                                        <button class="btn btn-outline-primary cart" id="product{{product.product_id}}">
+                                            Add to Cart
+                                        </button></span>
+                                    <a href="/myapp/productview/{{product.product_id}}">
+                                        <button class="btn btn-outline-primary" id="qv{{product.product_id}}">
+                                            Quick View
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% if value.3 %} 
+            {% for i in numberofslides %}
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        {% for product in value|slice:"3:6" %}
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <div class="card-body">
+                                    <h3 class="card-title our-title">
+                                        {{product.subcategory}}
+                                        <span class="tooltiptext">{{product.subcategory}}</span>
+                                    </h3>
+                                </div>
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1"
+                                    id="imageproduct{{product.product_id}}" />
+                                <div class="card-body">
+                                    <h5 class="card-title" id="nameproduct{{product.product_id}}"
+                                        title="{{product.product_name}}">
+                                        {{product.product_name}}
+                                    </h5>
+                                    <p class="card-text">{{product.desc|slice:"0:50"}}...</p>
+                                    <p class="card-text pricetag" id="priceproduct{{product.product_id}}">
+                                        &#8377;{{product.price}}
+                                    </p>
+                                    <span id="divproduct{{ product.product_id }}" class="divproduct">
+                                        <button class="btn btn-outline-primary cart" id="product{{product.product_id}}">
+                                            Add to Cart
+                                        </button>
+                                    </span>
+                                    <a href="/myapp/productview/{{product.product_id}}"><button
+                                            class="btn btn-outline-primary" id="qv{{product.product_id}}">
+                                            Quick View
+                                        </button></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %} 
+                        {% for product in value|slice:"6:" %} 
+                        {% if forloop.counter0|divisibleby:3 %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        {% endif %}
+                        <div class="col-md-4">
+                            <div class="card product-card">
+                                <div class="card-body">
+                                    <h3 class="card-title our-title">
+                                        {{product.subcategory}}
+                                        <span class="tooltiptext">{{product.subcategory}}</span>
+                                    </h3>
+                                </div>
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1"
+                                    id="imageproduct{{product.product_id}}" />
+                                <div class="card-body">
+                                    <h5 class="card-title" id="nameproduct{{product.product_id}}"
+                                        title="{{product.product_name}}">
+                                        {{product.product_name}}
+                                    </h5>
+                                    <p class="card-text">{{product.desc|slice:"0:50"}}...</p>
+                                    <p class="card-text pricetag" id="priceproduct{{product.product_id}}">
+                                        &#8377;{{product.price}}
+                                    </p>
+                                    <span id="divproduct{{ product.product_id }}" class="divproduct">
+                                        <button class="btn btn-outline-primary cart" id="product{{product.product_id}}">
+                                            Add to Cart
+                                        </button>
+                                    </span>
+                                    <a href="/myapp/productview/{{product.product_id}}"><button
+                                            class="btn btn-outline-primary" id="qv{{product.product_id}}">
+                                            Quick View
+                                        </button></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+            {% endif %}
+
+            <!-- Add more carousel items as needed -->
+        </div>
+        <button class="btn btn-primary" data-bs-target="#productCarousel{{forloop.counter}}" data-bs-slide="prev"
+            style="display: inline-block; margin-top: 20vh; float: left;">
+            &lt;
+        </button>
+        <button class="btn btn-primary" data-bs-target="#productCarousel{{forloop.counter}}" data-bs-slide="next"
+            style="display: inline-block; margin-top: 20vh; float: right;">
+            &gt;
+        </button>
+    </div>
+</div>
+{% endfor %} 
+{% endblock %} 
+{% block js %}
+<script>
+    if (localStorage.getItem("cart") == null) {
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        updateCart(cart);
+        //Activate all popovers on the page
+
+        // updatePopover(cart);
+        updateMoral(cart);
+    }
+    $(function () {
+        $('[data-bs-toggle="popover"]').popover();
+    });
+    function updatePopover(cart) {
+        console.log("We are inside updatePopover");
+        let popstr = "";
+        popstr += "<h5>Cart for your items in my shopping cart </h5><div>";
+        let i = 1;
+        let sum = 0;
+        for (let items in cart) {
+            sum += cart[items][0];
+            popstr += `<b>${i}:</b> `;
+            popstr +=
+                document.getElementById(`name${items}`).title +
+                " Qty:" +
+                cart[items][0] +
+                "<br>";
+            i++;
+        }
+        popstr +=
+            '<a href="/myapp/checkout/" id="checkout" class="btn btn-primary">Checkout</a></div>';
+
+        document.getElementById("pop-cart").setAttribute("data-bs-content", popstr);
+
+        document.getElementById("cart-quantity").innerText = `Cart(${sum}) `;
+    }
+    function updateMoral(cart) {
+        let moralStr = "<h2 class='mb-2'>Shopping Cart</h2>";
+        let sum = 0;
+        var  amount=0;
+     
+        for (let item in cart) {
+            if(cart[item][0] > 0){
+            sum += cart[item][0];
+            amount=amount + cart[item][2] * cart[item][0]
+            console.log(amount)
+            moralStr += `<div class="container d-flex border-bottom my-5 pb-4" style='text-transform:capitalize;'>
+                <div class="product-imge-container" style="max-width: 50%;">
+<img src="${document.getElementById(`image${item}`).src}" alt="${cart[item][1]}" style="max-width: 100%;max-height: 100%;object-fit: contain;">
+                    </div>
+                    <div class="product-desc ms-2">
+                        <h4 class="ms-2">${cart[item][1]}</h4>
+                        <p class="ms-2">${document.getElementById(`price${item}`).innerText}</p>
+                  <p class="ms-2">Qty: ${cart[item][0]}</p>
+                  </div>
+               </div>`;
+            }
+        }
+        console.log(amount);
+moralStr+=`<div class="row mx-2"><h4 class="col col-md-6">Total Amount</h4>  <p class="col col-md-6">&#8377;${amount}</p></div>`;
+        document.getElementById("body-modal").innerHTML = moralStr;
+        document.getElementById("cart-quantity").innerText = `Cart(${sum}) `;
+    }
+    // If the add to cart buttom is clicked then increment or decrement the item
+    $(".divproduct").on("click", "button.cart", function () {
+        let sa = this.id.toString();
+
+        if (cart[sa] != undefined) {
+            let qty = cart[sa][0] + 1;
+        } else {
+            qty = 1;
+            name = document.getElementById(`name${sa}`).title;
+            price=parseInt(document.getElementById(`price${sa}`).innerText.substr(1));
+            console.log(name);
+            cart[sa] = [qty, name ,price];
+        }
+
+        //JSON.stringify() function is used to convert a JavaScript object or value into a JSON string
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        updateCart(cart);
+        updateMoral(cart);
+    });
+    // change the add to cart button with quantity of the item in the cart if the item is already present in the cart
+    function updateCart(cart) {
+        for (let item in cart) {
+            console.log(item);
+            document.getElementById(
+                `div${item}`
+            ).innerHTML = `<button id='minus${item}' class='btn btn-outline-primary minus'>&minus;</button><span id='val${item}' style='padding:4px;'>${cart[item][0]}</span> <button id='plus${item}' class='btn btn-outline-primary plus'>&#43;</button>`;
+        }
+    }
+    //  change the value of the item inside the cart using plus(+) and minus(-) button
+    $(".divproduct").on("click", "button.minus", function () {
+        let key = this.id.toString().substr(5);
+
+        cart[key][0] = cart[key][0] - 1;
+        cart[key][0] = Math.max(0, cart[key][0]);
+
+        console.log(key)
+        if(cart[key][0] == 0){
+            document.getElementById(`div${key}`).innerHTML=`<button class="btn btn-outline-primary cart" id="${key}">
+                Add to Cart
+                </button>`
+            }
+            else{
+            document.getElementById(`val${key}`).innerText = cart[key][0];
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+        updateMoral(cart);  
+
+    });
+    $(".divproduct").on("click", "button.plus", function () {
+        let key = this.id.toString().substr(4);
+
+        cart[key][0] = cart[key][0] + 1;
+
+        document.getElementById(`val${key}`).innerText = cart[key][0];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        
+        updateMoral(cart);
+    });
+    function clearCart(){
+        console.log('we are inside clear cart')
+     cart=JSON.parse(localStorage.getItem("cart"));
+     for(item in cart){
+        for (let item in cart) {
+            console.log(item);
+            document.getElementById(
+                `div${item}`
+            ).innerHTML =  `<button class="btn btn-outline-primary cart" id="${item}">
+                                            Add to Cart
+                                        </button>`;
+        }
+     }
+     localStorage.clear();
+     cart={}
+     document.getElementById("cart-quantity").innerText = `Cart(0)`;
+     document.getElementById("body-modal").innerHTML = ".... ";
+
+    }
+</script>
+
+{% endblock %}

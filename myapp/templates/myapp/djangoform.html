@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+        width: 50%;
+border: 1px solid black;
+padding: 20px;
+margin: auto;
+margin-top: 25vh;
+        }
+        input{
+               width:100%;
+               box-sizing:border-box;
+               margin:10px auto;
+        }
+        li{
+            list-style-type: none;
+        }
+        li::before{
+            content: '✔';
+        }
+    </style>
+</head>
+<body>
+               <form action="{% url 'form' %} " method="post">
+                {% csrf_token %}
+                {{ form.as_ul}}
+                   <button type="submit">Submit</button>
+               </form>
+</body>
+</html>

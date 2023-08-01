@@ -1,0 +1,53 @@
+{% extends './layout.html' %}
+{% block title %} About {% endblock %}
+{% block css %}
+
+.form-group{
+margin:12px 0px;
+}
+{% endblock %}
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" id="my-alert">
+  {{ message }}.
+  <button style="border: none;background: transparent;position: absolute;right: 0;" onclick="document.getElementById('my-alert').style='display:none;'">
+    <span>&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container my-4">
+    <h3>Contact us</h3>
+<form action="{% url 'ContactUs' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Enter Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="abc" name="name">
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput2">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com" name="email">
+        <div id="emailHelp" class="form-text" >We'll never share your email with anyone else.</div>
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput3">Enter Phone Number</label>
+    <input type="tel" class="form-control" id="exampleFormControlInput3" placeholder="number" name="number">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Elaborate Your Concern</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="concern" name="concern"></textarea>
+  </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
+
+
+</div>
+
+
+
+
+{% endblock %}
