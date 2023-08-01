@@ -1,0 +1,2 @@
+A project is a sum of many applications. Every application has an objective and can be reused into another project, like the contact form on a website can be an application,
+and can be reused for others. See it as a module of your project.
