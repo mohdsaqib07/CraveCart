@@ -1,16 +1,13 @@
 {
-    "build":[
-        {
+    "builds": [{
         "src": "CraveCart/wsgi.py",
         "use": "@vercel/python",
-        "config": {"maxLambdaSize" : "15mb", "runtime" : "python3.9"}
-
-    }
-],
-    "routes" : [
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }],
+    "routes": [
         {
-            "src" : "/(.*)",
-            "dest" : "CraveCart/wsgi.py"
+            "src": "/(.*)",
+            "dest": "CraveCart/wsgi.py"
         }
     ]
 }
