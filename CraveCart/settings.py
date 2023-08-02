@@ -21,10 +21,10 @@ EMAIL_HOST = 'smtp-mail.outlook.com'  # e.g., 'smtp.gmail.com' for Gmail
 EMAIL_PORT = 587  # The port number for your email host
 EMAIL_USE_TLS = True  # Use TLS (Transport Layer Security) encryption
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'saqibturk4092@outlook.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'Air@19004'  # Your email password or an app-specific password
-DEFAULT_FROM_EMAIL = 'saqibturk4092@outlook.com' # Your email address
-ADMINS= [("Saqib", "mohdsaqib148183@gmail.com")]
+EMAIL_HOST_USER = 'user-your-email-address'  # Your email address
+EMAIL_HOST_PASSWORD = 'use-your-email-password'  # Your email password or an app-specific password
+DEFAULT_FROM_EMAIL = 'use-your-email-address' # Your email address
+
 # settings.py
 
 LOGGING = {
